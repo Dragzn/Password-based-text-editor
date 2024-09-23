@@ -1,0 +1,443 @@
+
+using System.Text;
+
+Console.WriteLine("Would you like to create a new custom path?");
+string answerpath = Console.ReadLine();
+string path = "";
+if (answerpath[0] == 'y')
+{
+    Console.WriteLine("What would you like the path to be?");
+    string FilePath = Console.ReadLine();
+    Console.WriteLine("What would you like the file name to be?");
+    string FileName = Console.ReadLine();
+    path = $"{FilePath}\\{FileName}.txt";
+    Console.WriteLine("Would you like to set this as the default?");
+    if (Console.ReadLine()[0] == 'y')
+    {
+
+        string PrefPath = Path.Combine(Directory.GetCurrentDirectory(), "Prefs.txt");
+        StreamWriter writer = new(PrefPath,false);
+        writer.Write(path);
+        writer.Close();
+    }
+}
+else
+{
+    string PrefPath = Path.Combine(Directory.GetCurrentDirectory(), "Prefs.txt");
+    if (File.Exists(PrefPath))
+    {
+        StreamReader reader = new(PrefPath);
+        path = reader.ReadToEnd();
+        reader.Close();
+    }
+    else
+        path = Path.Combine(Directory.GetCurrentDirectory(), "Text.txt");
+    
+    
+}
+if (!File.Exists(path))
+{
+    StreamWriter CreateFile = new(path, false);
+    CreateFile.WriteLine("");
+    CreateFile.Close();
+}
+do
+{
+    static string Encode(string input, int seed)
+    {
+        StringBuilder encoded = new(input.Length);
+
+        Random rand = new(seed);
+
+        foreach (char c in input)
+        {
+            char encodedChar = (char)(c ^ rand.Next(0, 256));
+            encoded.Append(encodedChar);
+        }
+
+        return encoded.ToString();
+    }
+    static string Decode(string encodedInput, int seed)
+    {
+        return Encode(encodedInput, seed);
+    }
+    static int ConvertToInt(string StringToConvert)
+    {
+        int temp = 0;
+        for (int i = 0; i < StringToConvert.Length; i++)
+        {
+            char x = StringToConvert[i];
+            switch (x)
+            {
+                // Lowercase letters
+                case 'a':
+                    temp += 1;
+                    break;
+                case 'b':
+                    temp += 2;
+                    break;
+                case 'c':
+                    temp += 3;
+                    break;
+                case 'd':
+                    temp += 4;
+                    break;
+                case 'e':
+                    temp += 5;
+                    break;
+                case 'f':
+                    temp += 6;
+                    break;
+                case 'g':
+                    temp += 7;
+                    break;
+                case 'h':
+                    temp += 8;
+                    break;
+                case 'i':
+                    temp += 9;
+                    break;
+                case 'j':
+                    temp += 10;
+                    break;
+                case 'k':
+                    temp += 11;
+                    break;
+                case 'l':
+                    temp += 12;
+                    break;
+                case 'm':
+                    temp += 13;
+                    break;
+                case 'n':
+                    temp += 14;
+                    break;
+                case 'o':
+                    temp += 15;
+                    break;
+                case 'p':
+                    temp += 16;
+                    break;
+                case 'q':
+                    temp += 17;
+                    break;
+                case 'r':
+                    temp += 18;
+                    break;
+                case 's':
+                    temp += 19;
+                    break;
+                case 't':
+                    temp += 20;
+                    break;
+                case 'u':
+                    temp += 21;
+                    break;
+                case 'v':
+                    temp += 22;
+                    break;
+                case 'w':
+                    temp += 23;
+                    break;
+                case 'x':
+                    temp += 24;
+                    break;
+                case 'y':
+                    temp += 25;
+                    break;
+                case 'z':
+                    temp += 26;
+                    break;
+
+                // Digits
+                case '1':
+                    temp += 27;
+                    break;
+                case '2':
+                    temp += 28;
+                    break;
+                case '3':
+                    temp += 29;
+                    break;
+                case '4':
+                    temp += 30;
+                    break;
+                case '5':
+                    temp += 31;
+                    break;
+                case '6':
+                    temp = 32;
+                    break;
+                case '7':
+                    temp = 33;
+                    break;
+                case '8':
+                    temp = 34;
+                    break;
+                case '9':
+                    temp = 35;
+                    break;
+                case '0':
+                    temp += 0;
+                    break;
+
+                // Special characters
+                case '!':
+                    temp += 36;
+                    break;
+                case '@':
+                    temp += 37;
+                    break;
+                case '#':
+                    temp += 38;
+                    break;
+                case '$':
+                    temp += 39;
+                    break;
+                case '%':
+                    temp += 40;
+                    break;
+                case '^':
+                    temp += 41;
+                    break;
+                case '&':
+                    temp += 42;
+                    break;
+                case '*':
+                    temp += 43;
+                    break;
+                case '(':
+                    temp += 44;
+                    break;
+                case ')':
+                    temp += 45;
+                    break;
+                case '-':
+                    temp += 46;
+                    break;
+                case '_':
+                    temp += 47;
+                    break;
+                case '=':
+                    temp += 48;
+                    break;
+                case '+':
+                    temp += 49;
+                    break;
+                case '[':
+                    temp += 50;
+                    break;
+                case ']':
+                    temp += 51;
+                    break;
+                case '{':
+                    temp += 52;
+                    break;
+                case '}':
+                    temp += 53;
+                    break;
+                case ';':
+                    temp += 54;
+                    break;
+                case ':':
+                    temp += 55;
+                    break;
+                case '\'':
+                    temp += 56;
+                    break;
+                case '"':
+                    temp += 57;
+                    break;
+                case '<':
+                    temp += 58;
+                    break;
+                case '>':
+                    temp += 59;
+                    break;
+                case ',':
+                    temp += 60;
+                    break;
+                case '.':
+                    temp += 61;
+                    break;
+                case '/':
+                    temp += 62;
+                    break;
+                case '?':
+                    temp += 63;
+                    break;
+                case '\\':
+                    temp += 64;
+                    break;
+                case '|':
+                    temp += 65;
+                    break;
+
+                // Capital letters
+                case 'A':
+                    temp += 66;
+                    break;
+                case 'B':
+                    temp += 67;
+                    break;
+                case 'C':
+                    temp += 68;
+                    break;
+                case 'D':
+                    temp += 69;
+                    break;
+                case 'E':
+                    temp += 70;
+                    break;
+                case 'F':
+                    temp += 71;
+                    break;
+                case 'G':
+                    temp += 72;
+                    break;
+                case 'H':
+                    temp += 73;
+                    break;
+                case 'I':
+                    temp += 74;
+                    break;
+                case 'J':
+                    temp += 75;
+                    break;
+                case 'K':
+                    temp += 76;
+                    break;
+                case 'L':
+                    temp += 77;
+                    break;
+                case 'M':
+                    temp += 78;
+                    break;
+                case 'N':
+                    temp += 79;
+                    break;
+                case 'O':
+                    temp += 80;
+                    break;
+                case 'P':
+                    temp += 81;
+                    break;
+                case 'Q':
+                    temp += 82;
+                    break;
+                case 'R':
+                    temp += 83;
+                    break;
+                case 'S':
+                    temp += 84;
+                    break;
+                case 'T':
+                    temp += 85;
+                    break;
+                case 'U':
+                    temp += 86;
+                    break;
+                case 'V':
+                    temp += 87;
+                    break;
+                case 'W':
+                    temp += 88;
+                    break;
+                case 'X':
+                    temp += 89;
+                    break;
+                case 'Y':
+                    temp += 90;
+                    break;
+                case 'Z':
+                    temp += 91;
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
+        return temp;
+    }
+
+
+    Console.WriteLine("What would you like to do? 1 to create a new message, 2 read your old message, 3 to read and append a new message.");
+    string answer = Console.ReadLine();
+    if (answer == "1")
+    {
+        
+        Console.WriteLine("What would you like the password to be?");
+        string pass = Console.ReadLine();
+        int seed = ConvertToInt(pass);
+        Console.Clear();
+        Console.WriteLine("Write the new message below");
+        StreamWriter writer = new(path, false);
+        writer.Write(Encode(Console.ReadLine(), seed));
+        writer.Close();
+        Console.WriteLine("It is saved!");
+
+    }
+    else if (answer == "2")
+    {
+        Console.WriteLine("What is the passcode?");
+        string pass = Console.ReadLine();
+        Console.Clear();
+        int seed = ConvertToInt(pass);
+
+        StreamReader reader = new(path, false);
+        string EncodedMessage = reader.ReadToEnd();
+        reader.Close();
+        string FinalMessage = Decode(EncodedMessage, seed);
+        if (FinalMessage == "")
+        {
+            Console.WriteLine("There is nothing to display!");
+        }
+        else
+        {
+            Console.WriteLine(FinalMessage);
+        }
+
+    }
+    else if (answer == "3")
+    {
+        Console.WriteLine("What is the passcode for the old message?");
+        string pass = Console.ReadLine();
+        Console.Clear();
+        int seed = ConvertToInt(pass);
+
+
+        StreamReader reader = new(path, false);
+        string encryptedText = reader.ReadToEnd();
+        reader.Close();
+
+        string decryptedText = Decode(encryptedText, seed);
+        Console.WriteLine("Your old text is: {0}", decryptedText);
+
+        Console.WriteLine("What would you like to add on?");
+        string textToAdd = Console.ReadLine();
+
+        string finalText = decryptedText + " " + textToAdd;
+
+        string encodedFinalText = Encode(finalText, seed);
+
+        StreamWriter writer = new(path, false);
+        writer.Write(encodedFinalText);
+        writer.Close();
+
+        Console.WriteLine("Your text is now: " + finalText);
+
+    }
+
+} while (Wantstocontinue());
+static bool Wantstocontinue()
+{
+    Console.WriteLine("Do you want to continue");
+    string answer = Console.ReadLine();
+    if (answer == "")
+    {
+        return false;
+    }
+    return answer[0] == 'y';
+}
+Environment.Exit(0);
